@@ -6,7 +6,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javax.smartcardio.*;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import static etu.ecole.ensicaen.carteemv.ApduCommand.*;
@@ -14,7 +13,7 @@ import static etu.ecole.ensicaen.carteemv.ApduCommand.*;
 
 public class HelloController {
 
-   @FXML
+    @FXML
    private  ComboBox itemcombo;
     @FXML
     private Button Readerbutton;
@@ -37,32 +36,17 @@ public class HelloController {
     private  PasswordField pinCodeField;
     @FXML
     private  Button validatePin;
-
-    @FXML
-    private Button consulterLeSolde;
     @FXML
     private Button crediterLeSolde;
     @FXML
     private Button debiterLeSolde;
-
-    @FXML
-    private TextField Cla;
-    @FXML
-    private TextField Ins;
-    @FXML
-    private TextField P1;
-    @FXML
-    private TextField P2;
-    @FXML
-    private TextField Lc;
-    @FXML
-    private TextField Data;
 
     public TerminalFactory tf;
     public Card card;
     public CardChannel channel;
     public ResponseAPDU response;
     public  boolean isPinVerify;
+
 
     public void initialize() {
         //Désactivation des éléments
@@ -123,14 +107,12 @@ public class HelloController {
 
             });
 
-
-
             /* restriction sur le format du mot de passe */
             pinCodeField.setTextFormatter(new TextFormatter<String>(change -> {
 
                 String newText = change.getControlNewText();
 
-                if(!newText.matches("\\d*") || newText.length() > 4){
+                if(!newText.matches("\\d*") && newText.matches("[A-F]")){
                     return null;
                 }
                 return change;
@@ -139,16 +121,18 @@ public class HelloController {
             /*Valider le mot de passe ***/
             validatePin.setOnAction(event -> {
                 actionPane.setVisible(true);
-                String pin = pinCodeField.getText();
+                String pin = pinCodeField.getText(); // récupération de l'entrée d'utilisateur
 
                 if(pin.length() == 4){
 
                     try {
                         isPinVerify = veryPinWithAPDU(pin);
                         showAlert(isPinVerify ? "Succès" : "Erreur", isPinVerify ? "PIN correct !" : "PIN incorrect !");
-
-                       // System.out.println("la valeur du pin est " + pin);
                         System.out.println( "la valeur de la fonction est " + veryPinWithAPDU(pin));
+
+                        if(isPinVerify){
+                           Solde();
+                        }
 
                     }catch (Exception e){
                         e.printStackTrace();
@@ -161,73 +145,37 @@ public class HelloController {
 
             });
 
-            consulterLeSolde.setOnAction(event -> {
+          //  consulterLeSolde.setOnAction(event -> {});
 
-                try {
-                   if(isPinVerify){
-                      card = ref.cardTerminal.get(0).connect("*");
-                      channel = card.getBasicChannel();
-                      response = channel.transmit(new CommandAPDU(Command.soldeCommand));
-
-                      int sw1 = response.getSW1();
-                      int sw2 = response.getSW2();
-                      if (sw1 == 0x90 && sw2 == 0x00) {
-                          byte[] responseData = response.getData();
-
-                          StringBuilder hexString = new StringBuilder();
-                          for (byte b : responseData) {
-                              hexString.append(String.format("%02X ", b)); // %02X pour 2 chiffres en hexadécimal
-                          }
-                          System.out.println("Données en hexadécimal : " + hexString);
-                          int decimalPart = 0;
-                          for (byte b : responseData) {
-                              String hexPart = String.format("%02X", b); // Convertir chaque byte en hexadécimal
-                               decimalPart = Integer.parseInt(hexPart, 16); // Convertir chaque byte hexadécimal en décimal
-                              System.out.println("Hex : " + hexPart + ", Décimal : " + decimalPart);
-                          }
-
-                          String value = String.valueOf(decimalPart);
-                          consulter.setText(value);
-
-                      }else {
-                          System.out.println("Une erreur " + response.getSW());
-                      }
-                   }
-                } catch (CardException e) {
-                    throw new RuntimeException(e);
-                }
-            });
             crediterLeSolde.setOnAction(event -> {
                 String montantCredit = credit.getText();
-
                 try {
                    if(isPinVerify) {
                         card = ref.cardTerminal.get(0).connect("*");
                         channel = card.getBasicChannel();
                         byte[] apduCredit = crediterLeSoldeAPDU(montantCredit);
                         response = channel.transmit(new CommandAPDU(apduCredit));
-                        //response = channel.transmit(new CommandAPDU(Command.CreditCommand15));
                         System.out.println("la commande APDU envoyé est : " + Utils.hexify(apduCredit));
                         System.out.println("le solde a été crédité : " + response);
+                        Solde();
                     }
-                } catch (CardException e) {
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             });
             debiterLeSolde.setOnAction(event -> {
-                String montantDebit = credit.getText();
+                String montantDebit = debit.getText();
                 try {
                    if(isPinVerify) {
                         card = ref.cardTerminal.get(0).connect("*");
                         channel = card.getBasicChannel();
-                        //byte[] apduDebit = debiterLeSoldeAPDU(montantDebit);
-                        //response = channel.transmit(new CommandAPDU(apduDebit));
-                        response = channel.transmit(new CommandAPDU(Command.DebitCommand));
-                        //System.out.println("la commande APDU envoyé est : " + Utils.hexify(apduDebit));
-                        System.out.println("la commande APDU envoyé est : " + Utils.hexify(Command.DebitCommand));
+                        byte[] apduDebit = debiterLeSoldeAPDU(montantDebit);
+                        response = channel.transmit(new CommandAPDU(apduDebit));
+                        System.out.println("la commande APDU envoyé est : " + Utils.hexify(apduDebit));
                         System.out.println("le solde a été débité : " + response);
+                        Solde();
                     }
-                } catch (CardException e) {
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             });
@@ -241,12 +189,6 @@ public class HelloController {
 
 
     }
-
-
-
-
-
-
 
    private void LoadReader(List<CardTerminal> cardTerminal){
 
@@ -267,5 +209,46 @@ public class HelloController {
    }
 
 
+  public void Solde() throws Exception {
 
-}
+      TerminalFactory terminalFactory = TerminalFactory.getDefault();
+      List<CardTerminal> cardTerminals = terminalFactory.terminals().list();
+
+      if(cardTerminals.isEmpty()){throw  new Exception("Aucun lecteur de carte détecté");}
+
+        CardTerminal terminal = cardTerminals.get(0);
+        Card card = terminal.connect("*");
+          CardChannel channel = card.getBasicChannel();
+         ResponseAPDU response = channel.transmit(new CommandAPDU(Command.soldeCommand));
+
+          int sw1 = response.getSW1();
+          int sw2 = response.getSW2();
+          if (sw1 == 0x90 && sw2 == 0x00) {
+              byte[] responseData = response.getData();
+
+              StringBuilder hexString = new StringBuilder();
+              for (byte b : responseData) {
+                  hexString.append(String.format("%02X ", b)); // %02X pour 2 chiffres en hexadécimal
+              }
+              System.out.println("Données en hexadécimal : " + hexString);
+              int decimalPart = 0;
+              for (byte b : responseData) {
+                  String hexPart = String.format("%02X", b); // Convertir chaque byte en hexadécimal
+                  decimalPart = Integer.parseInt(hexPart, 16); // Convertir chaque byte hexadécimal en décimal
+                  System.out.println("Hex : " + hexPart + ", Décimal : " + decimalPart);
+              }
+
+              String value = String.valueOf(decimalPart);
+              consulter.setText(value);
+
+          }else {
+              System.out.println("Une erreur " + response.getSW());
+          }
+      }
+
+
+
+  }
+
+
+

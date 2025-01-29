@@ -1,8 +1,6 @@
 package etu.ecole.ensicaen.carteemv.Utils;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.*;
+
 
 public class Utils {
     public static String hexify(byte[] bytes) {

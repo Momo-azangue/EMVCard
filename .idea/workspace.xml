@@ -5,28 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6dd7ff18-0086-453d-a749-e4ba1d338604" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/qodana_code_quality.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qodana.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/HelloApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/HelloController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/Response.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/SmartCardManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/Utils/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/etu/ecole/ensicaen/carteemv/card-emv.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/France.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/angleterre.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/etu/ecole/ensicaen/carteemv/test.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/ApduCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/ApduCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/SmartCardManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/Utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/Utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/etu/ecole/ensicaen/carteemv/card-emv.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/etu/ecole/ensicaen/carteemv/card-emv.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +22,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -71,8 +58,9 @@
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/azang/IdeaProjects/CarteEMV/src/main/java/etu/ecole/ensicaen/carteemv&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/azang/IdeaProjects/Calculatrice&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -129,7 +117,11 @@
       <workItem from="1736321277818" duration="13773000" />
       <workItem from="1736366382727" duration="13229000" />
       <workItem from="1736422086787" duration="13185000" />
-      <workItem from="1736501067890" duration="4265000" />
+      <workItem from="1736501067890" duration="5467000" />
+      <workItem from="1736880013197" duration="21307000" />
+      <workItem from="1737307667766" duration="6306000" />
+      <workItem from="1738090853403" duration="9611000" />
+      <workItem from="1738189484967" duration="607000" />
     </task>
     <servers />
   </component>
@@ -140,19 +132,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/HelloController.java</url>
-          <line>93</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/HelloController.java</url>
-          <line>180</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/HelloController.java</url>
-          <line>212</line>
-          <option name="timeStamp" value="30" />
+          <url>file://$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/ApduCommand.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

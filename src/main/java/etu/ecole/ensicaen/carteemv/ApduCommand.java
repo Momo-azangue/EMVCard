@@ -16,7 +16,6 @@ public class ApduCommand {
         if(cardTerminals.isEmpty()){
             throw  new Exception("Aucun lecteur de carte détecté");
         }
-
         CardTerminal terminal = cardTerminals.get(0);
        Card card = terminal.connect("*"); // pour tout les protocoles de transmissions
         CardChannel channel = card.getBasicChannel();
@@ -84,5 +83,6 @@ public class ApduCommand {
         return  apdu;
 
     }
+
 
 }
