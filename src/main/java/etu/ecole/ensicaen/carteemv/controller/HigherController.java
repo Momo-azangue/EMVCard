@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.input.KeyCode;
 
 public class HigherController {
 
@@ -27,11 +28,12 @@ public class HigherController {
     private Button sendAPDU;
 
 
+
     String command = null;
 
 
     public void initialize() {
-        setupFormatter();
+        setupTextFieldProperty();
         setupButton();
     }
 
@@ -61,7 +63,7 @@ public class HigherController {
     }
 
 
-    private void setupFormatter(){
+    private void setupTextFieldProperty(){
         Cla.setTextFormatter(getTextFormatter());
         Ins.setTextFormatter(getTextFormatter());
         P1.setTextFormatter(getTextFormatter());
@@ -73,24 +75,98 @@ public class HigherController {
 
             String newText = change.getControlNewText();
 
-            if( !newText.matches("(\\d*[A-F]*)*") ){
+            if( !newText.matches("(\\d*[A-Fa-f]*)*") ){
                 return null;
             }
             return change;
         }));
+
+        addFocusListener(Cla, Ins);
+        addFocusListener(Ins, P1);
+        addFocusListener(P1, P2);
+        addFocusListener(P2, Lc);
+        addFocusListener(Lc, Data);
+        addFocusListener(Data, Le);
+        addFocusListener(Data, Cla);
+
+
+        Lc.textProperty().addListener((observable, oldValue, newValue) -> {
+            updateDataFieldBasedOnLc(newValue);
+        });
+
+        Data.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkDataLengthAgainstLc();
+        });
+
     }
 
+
+    private void addFocusListener(TextField currentField, TextField nextField){
+        currentField.setOnKeyPressed(event -> {
+            if(event.getCode() == KeyCode.ENTER){
+                nextField.requestFocus();
+                event.consume();
+            }
+        });
+    }
     private static TextFormatter<String> getTextFormatter() {
         return new TextFormatter<String>(change -> {
             String newText = change.getControlNewText();
-            if (!newText.matches("(\\d*[A-F]*)*") || newText.length() > 2) {
+            if (!newText.matches("[0-9A-Fa-f]*") || newText.length() > 2) {
                 return null;
             }
             return change;
         });
     }
 
+    private void updateDataFieldBasedOnLc(String newLcValue) {
+        if (!newLcValue.isEmpty()) {
+            try {
+                int length = Integer.parseInt(newLcValue, 16); // Convertir de l'hexadécimal
+                generateHexStringOfLength(length);
+            } catch (NumberFormatException e) {
+                Data.setText("");
+            }
+        } else {
+            Data.setText("");
+        }
+        checkDataLengthAgainstLc();
+    }
 
+    private void checkDataLengthAgainstLc() {
+        String lcValue = Lc.getText();
+        String dataValue = Data.getText();
+
+        if (!lcValue.isEmpty() && !dataValue.isEmpty()) {
+            try {
+                int length = Integer.parseInt(lcValue, 16); // Convertir de l'hexadécimal
+                if (dataValue.length() / 2 > length) {
+                    Data.setStyle("-fx-text-box-border: red; -fx-focus-color: red;");
+                } else {
+                    Data.setStyle(""); // Réinitialiser le style
+                }
+            } catch (NumberFormatException e) {
+                Data.setStyle("-fx-text-box-border: red; -fx-focus-color: red;");
+            }
+        } else {
+
+            if(!dataValue.isEmpty()){
+                Lc.setStyle("-fx-background-color: red");
+            }else {
+                Lc.setStyle("");
+            }
+            Data.setStyle("");
+
+        }
+    }
+
+    private String generateHexStringOfLength(int length) {
+        StringBuilder hexString = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            hexString.append("00");
+        }
+        return hexString.toString();
+    }
 
 
 

@@ -64,19 +64,20 @@
                         <Insets left="54.0" />
                     </padding>
                 </HBox>
+                <Label layoutX="63.0" layoutY="108.0" text="data">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="Data" layoutX="56.0" layoutY="125.0" prefHeight="50.0" prefWidth="486.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="57.60000000000002" />
+                <Button fx:id="sendAPDU" layoutX="464.79999999999995" layoutY="185.0" mnemonicParsing="false" text="send APDU" AnchorPane.rightAnchor="59.200000000000045" />
                 <Label layoutX="62.4" layoutY="197.80000000000004" prefHeight="18.0" prefWidth="28.0" text="LOG" AnchorPane.bottomAnchor="158.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="510.0">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Label>
-                <TextArea layoutX="60.0" layoutY="229.60000000000002" prefHeight="103.0" prefWidth="479.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="61.0" />
-                <Button fx:id="sendAPDU" layoutX="464.79999999999995" layoutY="185.0" mnemonicParsing="false" text="send APDU" AnchorPane.rightAnchor="59.200000000000045" />
-                <TextField fx:id="Data" layoutX="56.0" layoutY="125.0" prefHeight="50.0" prefWidth="486.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="57.60000000000002" />
-                <Label layoutX="63.0" layoutY="108.0" text="data">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                </Label>
+                <TextArea layoutX="60.0" layoutY="229.60000000000002" prefHeight="103.0" prefWidth="479.0" AnchorPane.bottomAnchor="41.0" editable="false" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="61.0" />
+
             </children></AnchorPane>
 
 </AnchorPane>
