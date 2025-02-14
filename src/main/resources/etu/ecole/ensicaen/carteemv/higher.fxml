@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -9,13 +10,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="etu.ecole.ensicaen.carteemv.controller.HigherController">
+<AnchorPane prefHeight="433.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="etu.ecole.ensicaen.carteemv.controller.HigherController">
 
 
 
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox layoutY="29.0" prefHeight="42.0" prefWidth="600.0" spacing="41.0">
+         <AnchorPane prefHeight="50.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+               <Button layoutX="7.0" layoutY="14.0" mnemonicParsing="false" text="Etablish Connection" AnchorPane.leftAnchor="15.0" />
+               <Button layoutX="151.0" layoutY="13.0" mnemonicParsing="false" text="List of reader (refresh)" AnchorPane.leftAnchor="155.0" />
+               <ComboBox layoutX="308.0" layoutY="12.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="308.0" AnchorPane.rightAnchor="97.6" />
+               <Button layoutX="526.0" layoutY="13.0" mnemonicParsing="false" text="Connect" AnchorPane.rightAnchor="14.0" />
+            </children>
+         </AnchorPane>
+                <HBox layoutY="82.0" prefHeight="26.0" prefWidth="600.0" spacing="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
                         <Label text="CLA">
                             <font>
@@ -51,7 +60,7 @@
                         <Insets left="65.0" />
                     </padding>
                 </HBox>
-                <HBox layoutX="1.0" layoutY="61.0" prefHeight="34.0" prefWidth="600.0" spacing="13.0">
+                <HBox layoutX="1.0" layoutY="106.0" prefHeight="26.0" prefWidth="600.0" spacing="13.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
                         <TextField fx:id="Cla" alignment="CENTER" prefHeight="26.0" prefWidth="45.0" />
                         <TextField fx:id="Ins" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="26.0" prefWidth="45.0" />
@@ -64,19 +73,19 @@
                         <Insets left="54.0" />
                     </padding>
                 </HBox>
-                <Label layoutX="63.0" layoutY="108.0" text="data">
+                <Label layoutX="60.0" layoutY="153.0" text="data" AnchorPane.leftAnchor="60.0">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="Data" layoutX="56.0" layoutY="125.0" prefHeight="50.0" prefWidth="486.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="57.60000000000002" />
-                <Button fx:id="sendAPDU" layoutX="464.79999999999995" layoutY="185.0" mnemonicParsing="false" text="send APDU" AnchorPane.rightAnchor="59.200000000000045" />
-                <Label layoutX="62.4" layoutY="197.80000000000004" prefHeight="18.0" prefWidth="28.0" text="LOG" AnchorPane.bottomAnchor="158.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="510.0">
+                <TextField fx:id="Data" layoutX="56.0" layoutY="176.0" prefHeight="50.0" prefWidth="486.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="57.60000000000002" />
+                <Button fx:id="sendAPDU" layoutX="464.79999999999995" layoutY="235.0" mnemonicParsing="false" text="send APDU" AnchorPane.rightAnchor="59.200000000000045" />
+                <Label layoutX="62.4" layoutY="252.99999999999997" prefHeight="18.0" prefWidth="28.0" text="LOG" AnchorPane.bottomAnchor="128.60000000000002" AnchorPane.leftAnchor="62.4" AnchorPane.rightAnchor="510.4">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Label>
-                <TextArea layoutX="60.0" layoutY="229.60000000000002" prefHeight="103.0" prefWidth="479.0" AnchorPane.bottomAnchor="41.0" editable="false" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="61.0" />
+                <TextArea fx:id="Log" editable="false" layoutX="59.0" layoutY="282.0" prefHeight="103.0" prefWidth="479.0" AnchorPane.bottomAnchor="14.799999999999997" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="61.799999999999955" />
 
             </children></AnchorPane>
 

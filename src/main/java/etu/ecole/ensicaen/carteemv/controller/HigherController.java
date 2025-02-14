@@ -4,9 +4,12 @@ import etu.ecole.ensicaen.carteemv.Utils.Utils;
 import etu.ecole.ensicaen.carteemv.apdu.ApduCommand;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyCode;
+
+import java.util.Arrays;
 
 public class HigherController {
 
@@ -26,43 +29,59 @@ public class HigherController {
     private TextField Le;
     @FXML
     private Button sendAPDU;
+    @FXML
+    private TextArea Log;
 
-
-
-    String command = null;
-
+    public String command = null;
+    private int countActionOnLog = 0;
+    private int countResponseLog = 0;
 
     public void initialize() {
         setupTextFieldProperty();
         setupButton();
     }
 
-
+    /**
+     *
+     */
     private  void setupButton(){
         sendAPDU.setOnAction(event -> { handleSendApdu();
         });
     }
 
-
+    /**
+     *
+     */
     private void handleSendApdu() {
+        countActionOnLog++;
+        countResponseLog =  countActionOnLog +1;
         command = Cla.getText()+ Ins.getText()+ P1.getText()+ P2.getText()+ Lc.getText()+ Data.getText()+ Le.getText();
         System.out.println(command);
         byte [] Adpu = Utils.convertHexStringToByteArray(command);
-
-        if(Adpu.length > 0){
+        System.out.println(Adpu.length);
+        if(Adpu.length >= 4){
             try {
                 ApduCommand.SendAPDU(Adpu);
                 System.out.println("vous avez envoyé une APDU :" + " "+ Utils.hexify(Adpu));
                 System.out.println("La réponse est :"+ " " + ApduCommand.SendAPDU(Adpu));
+                Log.appendText( countActionOnLog + "  " + Utils.hexify(Adpu) + "\n");
+                Log.appendText(countResponseLog + "  " + Utils.hexify(ApduCommand.SendAPDU(Adpu).getBytes()) + "\n");
             } catch (Exception e) {
+                Log.appendText( countActionOnLog + "  " + ": Erreur - " + e.getMessage() + "\n");
                 throw new RuntimeException(e);
+
             }
         }else {
-            System.out.println("vous ne pouvez pas envoyer de commande null");
+            System.out.println("vous ne pouvez pas envoyer de commande une commade courte");
+            SimpleController.showAlert("Erreur", "longueur de l'apdu incorrecte");
+            Log.appendText(countActionOnLog + "  " + ": Erreur - Longueur de l'APDU incorrecte\n");
         }
     }
 
-
+    /**
+     *
+     *
+     */
     private void setupTextFieldProperty(){
         Cla.setTextFormatter(getTextFormatter());
         Ins.setTextFormatter(getTextFormatter());

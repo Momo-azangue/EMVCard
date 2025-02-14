@@ -13,6 +13,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/CarteEMV_jar/CarteEMV.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/CarteEMV_jar/CarteEMV.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/controller/HigherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/controller/HigherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/controller/SimpleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/controller/SimpleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/etu/ecole/ensicaen/carteemv/higher.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/etu/ecole/ensicaen/carteemv/higher.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,6 +135,8 @@
       <workItem from="1739404431605" duration="2637000" />
       <workItem from="1739407088711" duration="2783000" />
       <workItem from="1739414246683" duration="24763000" />
+      <workItem from="1739550512009" duration="2355000" />
+      <workItem from="1739558741264" duration="4449000" />
     </task>
     <servers />
   </component>
