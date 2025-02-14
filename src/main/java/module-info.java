@@ -8,4 +8,8 @@ module etu.ecole.ensicaen.carteemv {
 
     opens etu.ecole.ensicaen.carteemv to javafx.fxml;
     exports etu.ecole.ensicaen.carteemv;
+    exports etu.ecole.ensicaen.carteemv.apdu;
+    opens etu.ecole.ensicaen.carteemv.apdu to javafx.fxml;
+    exports etu.ecole.ensicaen.carteemv.controller;
+    opens etu.ecole.ensicaen.carteemv.controller to javafx.fxml;
 }

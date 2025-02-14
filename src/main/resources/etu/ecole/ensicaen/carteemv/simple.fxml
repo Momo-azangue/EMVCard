@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="etu.ecole.ensicaen.carteemv.controller.SimpleController">
+   <children>
+      <AnchorPane layoutX="36.8" prefHeight="40.0" prefWidth="563.0" translateY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ToolBar layoutX="-6.0" layoutY="-10.0" prefHeight="42.0" prefWidth="600.0" rotate="-180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <items>
+                  <Button mnemonicParsing="false">
+                     <padding>
+                        <Insets top="-1.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../images/angleterre.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false">
+                     <padding>
+                        <Insets left="1.0" top="-1.0" />
+                     </padding>
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../images/France.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </items>
+            </ToolBar>
+         </children>
+      </AnchorPane>
+      <TabPane layoutY="50.0" prefHeight="402.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.60000000000002">
+        <tabs>
+          <Tab text="Simple">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane fx:id="pinPane" layoutX="1.0" layoutY="132.0" prefHeight="188.0" prefWidth="600.0" visible="false">
+                           <children>
+                              <Label layoutX="107.0" layoutY="6.0" text="PIN :" />
+                              <PasswordField fx:id="pinCodeField" layoutX="199.0" layoutY="2.0" />
+                              <Button fx:id="validatePin" layoutX="451.0" layoutY="2.0" mnemonicParsing="false" text="Validate" />
+                              <AnchorPane fx:id="actionPane" layoutY="42.0" prefHeight="143.0" prefWidth="600.0" visible="false">
+                                 <children>
+                                    <Label layoutX="104.0" layoutY="16.0" text="Balance :" />
+                                    <Label layoutX="104.0" layoutY="65.0" text="Crédit : " />
+                                    <Label layoutX="107.0" layoutY="108.0" text="Débit " />
+                                    <TextField fx:id="consulterTextfield" editable="false" layoutX="216.0" layoutY="14.0" prefHeight="26.0" prefWidth="110.0" />
+                                    <TextField fx:id="creditTextfield" layoutX="217.0" layoutY="60.0" prefHeight="26.0" prefWidth="110.0" />
+                                    <TextField fx:id="debitTextfield" layoutX="218.0" layoutY="104.0" prefHeight="26.0" prefWidth="110.0" />
+                                    <Button layoutX="457.0" layoutY="13.0" mnemonicParsing="false" text="show" />
+                                    <Button fx:id="debitSoldButton" layoutX="457.0" layoutY="106.0" mnemonicParsing="false" text="Débit" />
+                                    <Button fx:id="creditSoldButton" layoutX="455.0" layoutY="60.0" mnemonicParsing="false" text="Crédit" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="8.0" prefHeight="118.0" prefWidth="600.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="6.399999999999977" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="104.0" layoutY="79.0" text="ATR :" />
+                              <TextField fx:id="AtrField" editable="false" layoutX="185.0" layoutY="75.0" prefHeight="25.0" prefWidth="205.0" />
+                              <Button fx:id="Atrbutton" layoutX="442.0" layoutY="75.0" mnemonicParsing="false" text="Select" />
+                              <Label layoutX="84.0" layoutY="22.0" text="Readers :" />
+                              <ComboBox fx:id="cardTerminalComboBox" layoutX="184.0" layoutY="18.0" prefHeight="25.0" prefWidth="209.0">
+                                  <items>
+                                      <FXCollections fx:factory="observableArrayList">
+
+
+                                      </FXCollections>
+                                  </items>
+
+
+                              </ComboBox>
+                              <Button fx:id="Readerbutton" layoutX="442.0" layoutY="18.0" mnemonicParsing="false" text="Select" />
+                              <Button fx:id="refreshReaderButton" layoutX="506.0" layoutY="17.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../images/refresh.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children>
+                     <padding>
+                        <Insets left="14.0" />
+                     </padding>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="High">
+                <content> <fx:include source="higher.fxml" /> </content>
+            </Tab>
+
+
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

@@ -10,7 +10,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("card-emv.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("simple.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1020, 640);
         stage.setTitle("Carte EMV");
         stage.setScene(scene);
