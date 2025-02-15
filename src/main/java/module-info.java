@@ -2,6 +2,7 @@ module etu.ecole.ensicaen.carteemv {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.smartcardio;
+    requires java.sql;
 
     requires org.controlsfx.controls;
     requires jnasmartcardio;
