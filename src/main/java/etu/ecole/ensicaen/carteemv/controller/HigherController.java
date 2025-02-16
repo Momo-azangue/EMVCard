@@ -4,15 +4,15 @@ import etu.ecole.ensicaen.carteemv.Utils.Utils;
 import etu.ecole.ensicaen.carteemv.apdu.ApduCommand;
 import etu.ecole.ensicaen.carteemv.model.DatabaseModel;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 
-import java.util.Arrays;
+import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
-public class HigherController {
+public class HigherController implements Initializable {
 
     @FXML
     private TextField Cla;
@@ -29,18 +29,31 @@ public class HigherController {
     @FXML
     private TextField Le;
     @FXML
+    private Button Etablish;
+    @FXML
+    private Button Readers;
+    @FXML
+    private Button Connect;
+    @FXML
     private Button sendAPDU;
+    @FXML
+    private Label data_Label;
     @FXML
     private TextArea Log;
 
-    private DatabaseModel databaseModel = new DatabaseModel();
 
+    private DatabaseModel databaseModel = new DatabaseModel();
+    private ResourceBundle bundle;
 
     public String command = null;
     private int countActionOnLog = 0;
     private int countResponseLog = 0;
 
-    public void initialize() {
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        bundle = ResourceBundle.getBundle("messages", Locale.getDefault());
+        ressourceBundleComponents();
         setupTextFieldProperty();
         setupButton();
     }
@@ -51,6 +64,13 @@ public class HigherController {
     private  void setupButton(){
         sendAPDU.setOnAction(event -> { handleSendApdu();
         });
+    }
+    private void ressourceBundleComponents(){
+        Etablish.setText(bundle.getString("Etablish_button"));
+        Readers.setText(bundle.getString("List_reader_button"));
+        Connect.setText(bundle.getString("Connect_button"));
+        data_Label.setText(bundle.getString("Label_6"));
+        sendAPDU.setText(bundle.getString("Apdu_button"));
     }
 
     /**

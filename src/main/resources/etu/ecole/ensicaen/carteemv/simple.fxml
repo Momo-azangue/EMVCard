@@ -51,7 +51,7 @@
       </AnchorPane>
       <TabPane layoutY="50.0" prefHeight="402.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.60000000000002">
         <tabs>
-          <Tab text="Simple">
+          <Tab fx:id="SimpleTab" text="Simple">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -62,25 +62,25 @@
                               <Button fx:id="validatePin" layoutX="451.0" layoutY="2.0" mnemonicParsing="false" text="Validate" />
                               <AnchorPane fx:id="actionPane" layoutY="42.0" prefHeight="143.0" prefWidth="600.0" visible="false">
                                  <children>
-                                    <Label layoutX="104.0" layoutY="16.0" text="Balance :" />
-                                    <Label layoutX="104.0" layoutY="65.0" text="Crédit : " />
-                                    <Label layoutX="107.0" layoutY="108.0" text="Débit " />
+                                    <Label fx:id="Solde_Label" layoutX="104.0" layoutY="16.0" text="Balance :" />
+                                    <Label fx:id="Credit_Label" layoutX="104.0" layoutY="65.0" text="Crédit : " />
+                                    <Label fx:id="Dedit_Label" layoutX="107.0" layoutY="108.0" text="Débit " />
                                     <TextField fx:id="consulterTextfield" editable="false" layoutX="216.0" layoutY="14.0" prefHeight="26.0" prefWidth="110.0" />
                                     <TextField fx:id="creditTextfield" layoutX="217.0" layoutY="60.0" prefHeight="26.0" prefWidth="110.0" />
                                     <TextField fx:id="debitTextfield" layoutX="218.0" layoutY="104.0" prefHeight="26.0" prefWidth="110.0" />
-                                    <Button layoutX="457.0" layoutY="13.0" mnemonicParsing="false" text="show" />
+                                    <Button fx:id="Solde_button" layoutX="457.0" layoutY="13.0" mnemonicParsing="false" text="show" />
                                     <Button fx:id="debitSoldButton" layoutX="457.0" layoutY="106.0" mnemonicParsing="false" text="Débit" />
                                     <Button fx:id="creditSoldButton" layoutX="455.0" layoutY="60.0" mnemonicParsing="false" text="Crédit" />
                                  </children>
                               </AnchorPane>
                            </children>
                         </Pane>
-                        <Pane layoutX="8.0" prefHeight="118.0" prefWidth="600.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="6.399999999999977" AnchorPane.topAnchor="0.0">
+                        <Pane layoutX="8.0" layoutY="14.0" prefHeight="118.0" prefWidth="600.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.199999999999932" AnchorPane.topAnchor="14.0">
                            <children>
-                              <Label layoutX="104.0" layoutY="79.0" text="ATR :" />
+                              <Label fx:id="Label_2" layoutX="104.0" layoutY="79.0" text="ATR :" />
                               <TextField fx:id="AtrField" editable="false" layoutX="185.0" layoutY="75.0" prefHeight="25.0" prefWidth="205.0" />
                               <Button fx:id="Atrbutton" layoutX="442.0" layoutY="75.0" mnemonicParsing="false" text="Select" />
-                              <Label layoutX="84.0" layoutY="22.0" text="Readers :" />
+                              <Label fx:id="Label_1" layoutX="84.0" layoutY="22.0" text="Readers :" />
                               <ComboBox fx:id="cardTerminalComboBox" layoutX="184.0" layoutY="18.0" prefHeight="25.0" prefWidth="209.0">
                                   <items>
                                       <FXCollections fx:factory="observableArrayList">
@@ -92,7 +92,7 @@
 
                               </ComboBox>
                               <Button fx:id="Readerbutton" layoutX="442.0" layoutY="18.0" mnemonicParsing="false" text="Select" />
-                              <Button fx:id="refreshReaderButton" layoutX="506.0" layoutY="17.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0">
+                              <Button fx:id="refreshReaderButton" layoutX="508.0" layoutY="17.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" translateX="1.0">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -110,7 +110,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="High">
+            <Tab fx:id="HighTab" text="High">
                 <content> <fx:include source="higher.fxml" /> </content>
             </Tab>
 

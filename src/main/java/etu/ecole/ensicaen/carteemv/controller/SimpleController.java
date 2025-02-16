@@ -4,6 +4,7 @@ import etu.ecole.ensicaen.carteemv.Utils.Utils;
 import etu.ecole.ensicaen.carteemv.apdu.ApduCommand;
 import etu.ecole.ensicaen.carteemv.apdu.Command;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -11,8 +12,11 @@ import javax.smartcardio.*;
 import java.util.List;
 import static etu.ecole.ensicaen.carteemv.apdu.ApduCommand.*;
 
+import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
-public class SimpleController {
+public class SimpleController implements Initializable {
 
     private TerminalFactory tf;
     private Card card;
@@ -21,7 +25,22 @@ public class SimpleController {
     private boolean isPinVerify;
     private List<CardTerminal> cardTerminals;
 
-
+    @FXML
+    private Tab SimpleTab;
+    @FXML
+    private Tab HighTab;
+    @FXML
+    private  Label Label_1;
+    @FXML
+    private  Label Label_2;
+    @FXML
+    private  Label Solde_Label;
+    @FXML
+    private  Label Credit_Label;
+    @FXML
+    private  Label Dedit_Label;
+    @FXML
+    private  Button Solde_button;
     @FXML
     private  ComboBox<CardTerminal> cardTerminalComboBox;
     @FXML
@@ -51,8 +70,12 @@ public class SimpleController {
     @FXML
     private Button refreshReaderButton;
 
+    private ResourceBundle bundle;
 
-    public void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        bundle = ResourceBundle.getBundle("messages", Locale.getDefault());
+        ressourceBundleComponents();
         componentsfirstState();
         loadCardTerminals();
         setupEventHandlers();
@@ -64,6 +87,7 @@ public class SimpleController {
      * for the first time, no parameter
      */
     private void componentsfirstState(){
+
         AtrField.setDisable(true);
         cardTerminalComboBox.setDisable(true);
         Readerbutton.setDisable(true);
@@ -71,7 +95,29 @@ public class SimpleController {
         pinPane.setVisible(false);
         actionPane.setVisible(false);
     }
+    private void ressourceBundleComponents(){
+        SimpleTab.setText(bundle.getString("Tab_1"));
+        HighTab.setText(bundle.getString("Tab_2"));
+        Label_1.setText(bundle.getString("Label_1"));
+        Label_2.setText(bundle.getString("Label_2"));
+        Readerbutton.setText(bundle.getString("Reader_button"));
+        Atrbutton.setText(bundle.getString("Atr_button"));
 
+        Solde_Label.setText(bundle.getString("Sold_Label"));
+        Credit_Label.setText(bundle.getString("Credit_Label"));
+        Dedit_Label.setText(bundle.getString("Debit_Label"));
+
+        Solde_button.setText(bundle.getString("Balance_button"));
+        creditSoldButton.setText(bundle.getString("Credit_button"));
+        debitSoldButton.setText(bundle.getString("Debit_button"));
+
+        validatePin.setText(bundle.getString("pin_button"));
+
+    }
+
+    /**
+     * load the readers
+     */
     private void loadCardTerminals(){
         try{
             tf = TerminalFactory.getDefault();

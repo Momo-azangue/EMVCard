@@ -18,10 +18,10 @@
             <children>
          <AnchorPane prefHeight="50.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-               <Button layoutX="7.0" layoutY="14.0" mnemonicParsing="false" text="Etablish Connection" AnchorPane.leftAnchor="15.0" />
-               <Button layoutX="151.0" layoutY="13.0" mnemonicParsing="false" text="List of reader (refresh)" AnchorPane.leftAnchor="155.0" />
-               <ComboBox layoutX="308.0" layoutY="12.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="308.0" AnchorPane.rightAnchor="97.6" />
-               <Button layoutX="526.0" layoutY="13.0" mnemonicParsing="false" text="Connect" AnchorPane.rightAnchor="14.0" />
+               <Button fx:id="Etablish" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" text="Etablish Connection" AnchorPane.leftAnchor="15.0" />
+               <Button fx:id="Readers" layoutX="151.0" layoutY="13.0" mnemonicParsing="false" text="List of reader (refresh)" AnchorPane.leftAnchor="160.0" />
+               <ComboBox layoutX="308.0" layoutY="12.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="97.6" />
+               <Button fx:id="Connect" layoutX="526.0" layoutY="13.0" mnemonicParsing="false" text="Connect" AnchorPane.rightAnchor="14.0" />
             </children>
          </AnchorPane>
                 <HBox layoutY="82.0" prefHeight="26.0" prefWidth="600.0" spacing="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -73,7 +73,7 @@
                         <Insets left="54.0" />
                     </padding>
                 </HBox>
-                <Label layoutX="60.0" layoutY="153.0" text="data" AnchorPane.leftAnchor="60.0">
+                <Label fx:id="data_Label" layoutX="60.0" layoutY="153.0" text="data" AnchorPane.leftAnchor="60.0">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>
