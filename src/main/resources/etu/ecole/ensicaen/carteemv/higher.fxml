@@ -20,7 +20,7 @@
             <children>
                <Button fx:id="Etablish" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" text="Etablish Connection" AnchorPane.leftAnchor="15.0" />
                <Button fx:id="Readers" layoutX="151.0" layoutY="13.0" mnemonicParsing="false" text="List of reader (refresh)" AnchorPane.leftAnchor="160.0" />
-               <ComboBox layoutX="308.0" layoutY="12.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="97.6" />
+               <ComboBox fx:id="cardTerminalComboBox"  layoutX="308.0" layoutY="12.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="97.6" />
                <Button fx:id="Connect" layoutX="526.0" layoutY="13.0" mnemonicParsing="false" text="Connect" AnchorPane.rightAnchor="14.0" />
             </children>
          </AnchorPane>

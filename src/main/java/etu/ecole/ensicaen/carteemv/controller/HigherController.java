@@ -8,11 +8,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 
+import javax.smartcardio.*;
 import java.net.URL;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import static etu.ecole.ensicaen.carteemv.controller.SimpleController.showAlert;
+
 public class HigherController implements Initializable {
+
+    private TerminalFactory tf;
+    private Card card;
+    private CardChannel channel;
+    private ResponseAPDU response;
+    private boolean isPinVerify;
+    private List<CardTerminal> cardTerminals;
 
     @FXML
     private TextField Cla;
@@ -40,7 +51,8 @@ public class HigherController implements Initializable {
     private Label data_Label;
     @FXML
     private TextArea Log;
-
+    @FXML
+    private  ComboBox<CardTerminal> cardTerminalComboBox;
 
     private DatabaseModel databaseModel = new DatabaseModel();
     private ResourceBundle bundle;
@@ -52,10 +64,10 @@ public class HigherController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        bundle = ResourceBundle.getBundle("messages", Locale.getDefault());
-        ressourceBundleComponents();
         setupTextFieldProperty();
         setupButton();
+        loadCardTerminals();
+
     }
 
     /**
@@ -64,13 +76,39 @@ public class HigherController implements Initializable {
     private  void setupButton(){
         sendAPDU.setOnAction(event -> { handleSendApdu();
         });
+        Readers.setOnAction(event -> { setRefreshReaderButton();
+        });
+
+
+
     }
-    private void ressourceBundleComponents(){
+
+
+    public void ressourceBundleComponents(Locale locale){
+
+        bundle = ResourceBundle.getBundle("messages", locale);
+
         Etablish.setText(bundle.getString("Etablish_button"));
         Readers.setText(bundle.getString("List_reader_button"));
         Connect.setText(bundle.getString("Connect_button"));
         data_Label.setText(bundle.getString("Label_6"));
         sendAPDU.setText(bundle.getString("Apdu_button"));
+    }
+
+    private void loadCardTerminals(){
+        try{
+            tf = TerminalFactory.getDefault();
+            cardTerminals = tf.terminals().list();
+            if(cardTerminals.isEmpty()){
+                showAlert("Pas de lecteur présent", "Veuillez insérer un lecteur.");
+            }else {
+                cardTerminalComboBox.getItems().addAll(cardTerminals);
+                cardTerminalComboBox.setDisable(false);
+            }
+        }catch (CardException e){
+            showAlert("Erreur", "Erreur lors du chargement des terminaux : " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -82,12 +120,11 @@ public class HigherController implements Initializable {
         command = Cla.getText()+ Ins.getText()+ P1.getText()+ P2.getText()+ Lc.getText()+ Data.getText()+ Le.getText();
         System.out.println(command);
         byte [] Adpu = Utils.convertHexStringToByteArray(command);
-        System.out.println(Adpu.length);
         if(Adpu.length >= 4){
             try {
                 ApduCommand.SendAPDU(Adpu);
                 System.out.println("vous avez envoyé une APDU :" + " "+ Utils.hexify(Adpu));
-                System.out.println("La réponse est :"+ " " + ApduCommand.SendAPDU(Adpu));
+                System.out.println("La réponse est :"+ " " + Utils.hexify(ApduCommand.SendAPDU(Adpu).getBytes()));
                 Log.appendText( countActionOnLog + "  " + Utils.hexify(Adpu) + "\n");
                 Log.appendText(countResponseLog + "  " + Utils.hexify(ApduCommand.SendAPDU(Adpu).getBytes()) + "\n");
 
@@ -99,7 +136,7 @@ public class HigherController implements Initializable {
             }
         }else {
             System.out.println("vous ne pouvez pas envoyer de commande une commade courte");
-            SimpleController.showAlert("Erreur", "longueur de l'apdu incorrecte");
+            showAlert("Erreur", "longueur de l'apdu incorrecte");
             Log.appendText(countActionOnLog + "  " + ": Erreur - Longueur de l'APDU incorrecte\n");
 
         }
@@ -214,6 +251,10 @@ public class HigherController implements Initializable {
         return hexString.toString();
     }
 
+    private void setRefreshReaderButton(){
+        cardTerminalComboBox.getItems().clear();
+        loadCardTerminals();
+    }
 
 
 }

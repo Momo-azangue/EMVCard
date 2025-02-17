@@ -69,13 +69,20 @@ public class SimpleController implements Initializable {
     private Button debitSoldButton;
     @FXML
     private Button refreshReaderButton;
+    @FXML
+    private ToggleButton englishButton;
+    @FXML
+    private ToggleButton frenchButton;
 
     private ResourceBundle bundle;
+    private ToggleGroup languageToggleGroup;
+    private HigherController higherController;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        bundle = ResourceBundle.getBundle("messages", Locale.getDefault());
-        ressourceBundleComponents();
+
+        toggleLanguage();
         componentsfirstState();
         loadCardTerminals();
         setupEventHandlers();
@@ -95,7 +102,13 @@ public class SimpleController implements Initializable {
         pinPane.setVisible(false);
         actionPane.setVisible(false);
     }
-    private void ressourceBundleComponents(){
+
+    /**
+     *
+     * @param locale
+     */
+    private void ressourceBundleComponents(Locale locale){
+        bundle = ResourceBundle.getBundle("messages", locale);
         SimpleTab.setText(bundle.getString("Tab_1"));
         HighTab.setText(bundle.getString("Tab_2"));
         Label_1.setText(bundle.getString("Label_1"));
@@ -115,6 +128,34 @@ public class SimpleController implements Initializable {
 
     }
 
+    /**
+     *
+     */
+    private void toggleLanguage(){
+        languageToggleGroup = new ToggleGroup();
+        frenchButton.setToggleGroup(languageToggleGroup);
+        englishButton.setToggleGroup(languageToggleGroup);
+
+        bundle = ResourceBundle.getBundle("messages", Locale.FRENCH);
+        ressourceBundleComponents(Locale.FRENCH);
+
+        languageToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if (newToggle == frenchButton) {
+                ressourceBundleComponents(Locale.FRENCH);
+                if(higherController !=null){
+                    higherController.ressourceBundleComponents(Locale.FRENCH);
+                }
+            } else if (newToggle == englishButton) {
+                ressourceBundleComponents(Locale.ENGLISH);
+                if(higherController !=null){
+                    higherController.ressourceBundleComponents(Locale.ENGLISH);
+
+                }
+
+            }
+        });
+
+    }
     /**
      * load the readers
      */

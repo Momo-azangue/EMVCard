@@ -70,6 +70,7 @@ public class ApduCommand {
     public static String Solde() throws Exception {
         CardChannel channel = getCardChannel();
         ResponseAPDU response = channel.transmit(new CommandAPDU(Command.soldeCommand));
+        System.out.println("la réponse du solde est : "+ Utils.hexify(response.getBytes()));
        return processSoldeResponse(response);
     }
 
