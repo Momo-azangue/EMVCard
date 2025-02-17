@@ -2,11 +2,13 @@ package etu.ecole.ensicaen.carteemv.controller;
 
 import etu.ecole.ensicaen.carteemv.Utils.Utils;
 import etu.ecole.ensicaen.carteemv.apdu.ApduCommand;
+import etu.ecole.ensicaen.carteemv.apdu.Command;
 import etu.ecole.ensicaen.carteemv.model.DatabaseModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
 
 import javax.smartcardio.*;
 import java.net.URL;
@@ -40,7 +42,7 @@ public class HigherController implements Initializable {
     @FXML
     private TextField Le;
     @FXML
-    private Button Etablish;
+    private Button stream;
     @FXML
     private Button Readers;
     @FXML
@@ -53,8 +55,10 @@ public class HigherController implements Initializable {
     private TextArea Log;
     @FXML
     private  ComboBox<CardTerminal> cardTerminalComboBox;
+    @FXML
+    private HBox sectionTextfield;
 
-    private DatabaseModel databaseModel = new DatabaseModel();
+    private final DatabaseModel databaseModel = new DatabaseModel();
     private ResourceBundle bundle;
 
     public String command = null;
@@ -64,21 +68,38 @@ public class HigherController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+        Locale defaultLocale = Locale.getDefault();
+        ressourceBundleComponents(defaultLocale);
+
         setupTextFieldProperty();
         setupButton();
         loadCardTerminals();
+        setuoConfiguration();
 
     }
 
     /**
      *
      */
+    private  void setuoConfiguration(){
+    sectionTextfield.setDisable(true);
+    Connect.setDisable(true);
+    sendAPDU.setDisable(true);
+    Data.setDisable(true);
+    }
     private  void setupButton(){
         sendAPDU.setOnAction(event -> { handleSendApdu();
         });
         Readers.setOnAction(event -> { setRefreshReaderButton();
         });
-
+        stream.setOnAction(event -> {
+            handleReaderButtonAction();
+        });
+        Connect.setOnAction(event -> {
+            handleAtrButtonAction();
+        });
 
 
     }
@@ -87,8 +108,7 @@ public class HigherController implements Initializable {
     public void ressourceBundleComponents(Locale locale){
 
         bundle = ResourceBundle.getBundle("messages", locale);
-
-        Etablish.setText(bundle.getString("Etablish_button"));
+        stream.setText(bundle.getString("Stream-button"));
         Readers.setText(bundle.getString("List_reader_button"));
         Connect.setText(bundle.getString("Connect_button"));
         data_Label.setText(bundle.getString("Label_6"));
@@ -111,6 +131,39 @@ public class HigherController implements Initializable {
         }
     }
 
+    private void handleReaderButtonAction(){
+        try {
+
+            CardTerminal selectedTerminal = cardTerminalComboBox.getValue();
+            if (selectedTerminal != null && selectedTerminal.isCardPresent()){
+                card = selectedTerminal.connect("*");
+                card.getATR();
+                showAlert("Connexion", "La connexion a été établi");
+                Connect.setDisable(false);
+
+            }else{
+                showAlert("No card present", "veuillez inserer une carte s'iil vous plait");
+            }
+        } catch (CardException e) {
+            showAlert("Erreur", "Erreur lors de la connexion à la carte : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void handleAtrButtonAction(){
+        try {
+
+            card = cardTerminalComboBox.getValue().connect("*");
+            channel = card.getBasicChannel();
+            response = channel.transmit(new CommandAPDU(Command.selectCommand));
+            sectionTextfield.setDisable(false);
+            sendAPDU.setDisable(false);
+            Data.setDisable(false);
+        } catch (CardException e) {
+            showAlert("Erreur", "Erreur lors de la transmission de la commande APDU : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
     /**
      *
      */

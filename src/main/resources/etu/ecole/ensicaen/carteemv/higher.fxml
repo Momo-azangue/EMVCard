@@ -11,17 +11,15 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="433.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="etu.ecole.ensicaen.carteemv.controller.HigherController">
-
-
-
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
          <AnchorPane prefHeight="50.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-               <Button fx:id="Etablish" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" text="Etablish Connection" AnchorPane.leftAnchor="15.0" />
+
                <Button fx:id="Readers" layoutX="151.0" layoutY="13.0" mnemonicParsing="false" text="List of reader (refresh)" AnchorPane.leftAnchor="160.0" />
                <ComboBox fx:id="cardTerminalComboBox"  layoutX="308.0" layoutY="12.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="97.6" />
                <Button fx:id="Connect" layoutX="526.0" layoutY="13.0" mnemonicParsing="false" text="Connect" AnchorPane.rightAnchor="14.0" />
+                <Button fx:id="stream" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" text="Etablish Connection" AnchorPane.leftAnchor="15.0" />
             </children>
          </AnchorPane>
                 <HBox layoutY="82.0" prefHeight="26.0" prefWidth="600.0" spacing="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -60,7 +58,7 @@
                         <Insets left="65.0" />
                     </padding>
                 </HBox>
-                <HBox layoutX="1.0" layoutY="106.0" prefHeight="26.0" prefWidth="600.0" spacing="13.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <HBox fx:id="sectionTextfield" layoutX="1.0" layoutY="106.0" prefHeight="26.0" prefWidth="600.0" spacing="13.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
                         <TextField fx:id="Cla" alignment="CENTER" prefHeight="26.0" prefWidth="45.0" />
                         <TextField fx:id="Ins" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="26.0" prefWidth="45.0" />

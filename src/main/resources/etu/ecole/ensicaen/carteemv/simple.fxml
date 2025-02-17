@@ -112,7 +112,7 @@
             </content>
           </Tab>
             <Tab fx:id="HighTab" text="High">
-                <content> <fx:include source="higher.fxml" /> </content>
+                <content> <fx:include source="higher.fxml" fx:id="High" /> </content>
             </Tab>
 
 

@@ -4,6 +4,7 @@ import etu.ecole.ensicaen.carteemv.Utils.Utils;
 import etu.ecole.ensicaen.carteemv.apdu.ApduCommand;
 import etu.ecole.ensicaen.carteemv.apdu.Command;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -75,19 +76,26 @@ public class SimpleController implements Initializable {
     private ToggleButton frenchButton;
 
     private ResourceBundle bundle;
-    private ToggleGroup languageToggleGroup;
-    private HigherController higherController;
+
+    public ToggleGroup languageToggleGroup ;
+
+
+
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
 
         toggleLanguage();
         componentsfirstState();
         loadCardTerminals();
         setupEventHandlers();
 
+
     }
+
 
     /**
      * fonction to set up all UI components
@@ -102,13 +110,35 @@ public class SimpleController implements Initializable {
         pinPane.setVisible(false);
         actionPane.setVisible(false);
     }
+    /**
+     *
+     */
+    private void toggleLanguage(){
+        languageToggleGroup = new ToggleGroup();
+        frenchButton.setToggleGroup(languageToggleGroup);
+        englishButton.setToggleGroup(languageToggleGroup);
 
+
+        languageToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if (newToggle == frenchButton) {
+                ressourceBundleComponents(Locale.FRENCH);
+
+            } else if (newToggle == englishButton) {
+                ressourceBundleComponents(Locale.ENGLISH);
+
+            }
+        });
+        frenchButton.setSelected(true);
+        ressourceBundleComponents(Locale.FRENCH);
+
+    }
     /**
      *
      * @param locale
      */
-    private void ressourceBundleComponents(Locale locale){
+    public void ressourceBundleComponents(Locale locale){
         bundle = ResourceBundle.getBundle("messages", locale);
+
         SimpleTab.setText(bundle.getString("Tab_1"));
         HighTab.setText(bundle.getString("Tab_2"));
         Label_1.setText(bundle.getString("Label_1"));
@@ -126,36 +156,11 @@ public class SimpleController implements Initializable {
 
         validatePin.setText(bundle.getString("pin_button"));
 
-    }
 
-    /**
-     *
-     */
-    private void toggleLanguage(){
-        languageToggleGroup = new ToggleGroup();
-        frenchButton.setToggleGroup(languageToggleGroup);
-        englishButton.setToggleGroup(languageToggleGroup);
-
-        bundle = ResourceBundle.getBundle("messages", Locale.FRENCH);
-        ressourceBundleComponents(Locale.FRENCH);
-
-        languageToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
-            if (newToggle == frenchButton) {
-                ressourceBundleComponents(Locale.FRENCH);
-                if(higherController !=null){
-                    higherController.ressourceBundleComponents(Locale.FRENCH);
-                }
-            } else if (newToggle == englishButton) {
-                ressourceBundleComponents(Locale.ENGLISH);
-                if(higherController !=null){
-                    higherController.ressourceBundleComponents(Locale.ENGLISH);
-
-                }
-
-            }
-        });
 
     }
+
+
     /**
      * load the readers
      */
