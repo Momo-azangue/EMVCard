@@ -10,8 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6dd7ff18-0086-453d-a749-e4ba1d338604" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/CarteEMV_jar/CarteEMV.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/CarteEMV_jar/CarteEMV.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/controller/HigherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/etu/ecole/ensicaen/carteemv/controller/HigherController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,7 +144,7 @@
       <workItem from="1739776401230" duration="979000" />
       <workItem from="1739781518416" duration="153000" />
       <workItem from="1739793537387" duration="16355000" />
-      <workItem from="1739996129892" duration="4657000" />
+      <workItem from="1739996129892" duration="5482000" />
     </task>
     <servers />
   </component>

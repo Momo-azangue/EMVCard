@@ -309,6 +309,18 @@ public class HigherController implements Initializable {
         cardTerminalComboBox.getItems().clear();
         loadCardTerminals();
         setuoConfiguration();
+        clearFonction();
+    }
+
+    private  void clearFonction(){
+        Log.clear();
+        Data.clear();
+        Cla.clear();
+        Ins.clear();
+        P1.clear();
+        P2.clear();
+        Lc.clear();
+        Le.clear();
     }
 
 
