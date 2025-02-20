@@ -116,6 +116,7 @@ public class HigherController implements Initializable {
     }
 
     private void loadCardTerminals(){
+
         try{
             tf = TerminalFactory.getDefault();
             cardTerminals = tf.terminals().list();
@@ -307,6 +308,7 @@ public class HigherController implements Initializable {
     private void setRefreshReaderButton(){
         cardTerminalComboBox.getItems().clear();
         loadCardTerminals();
+        setuoConfiguration();
     }
 
 
