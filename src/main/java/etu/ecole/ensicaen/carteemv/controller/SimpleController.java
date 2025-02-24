@@ -87,7 +87,6 @@ public class SimpleController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
         toggleLanguage();
         componentsfirstState();
         loadCardTerminals();
@@ -278,6 +277,7 @@ public class SimpleController implements Initializable {
                     byte[] apduCredit = crediterLeSoldeAPDU(montantCredit);
                     response = channel.transmit(new CommandAPDU(apduCredit));
                     consulterTextfield.setText(ApduCommand.Solde());
+                    creditTextfield.clear();
                 } catch (CardException e) {
                     showAlert("Erreur", "Erreur lors du crédit du solde : " + e.getMessage());
                     e.printStackTrace();
@@ -296,6 +296,7 @@ public class SimpleController implements Initializable {
                 byte[] apduDebit = debiterLeSoldeAPDU(montantDebit);
                 response = channel.transmit(new CommandAPDU(apduDebit));
                 consulterTextfield.setText(ApduCommand.Solde());
+                debitTextfield.clear();
             } catch (CardException e) {
                 showAlert("Erreur", "Erreur lors du débit du solde : " + e.getMessage());
                 e.printStackTrace();

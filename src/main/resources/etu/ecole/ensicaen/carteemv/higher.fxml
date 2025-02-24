@@ -16,10 +16,9 @@
          <AnchorPane prefHeight="50.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
 
-               <Button fx:id="Readers" layoutX="151.0" layoutY="13.0" mnemonicParsing="false" text="List of reader (refresh)" AnchorPane.leftAnchor="160.0" />
-               <ComboBox fx:id="cardTerminalComboBox"  layoutX="308.0" layoutY="12.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="340.0" AnchorPane.rightAnchor="97.6" />
-               <Button fx:id="Connect" layoutX="526.0" layoutY="13.0" mnemonicParsing="false" text="Connect" AnchorPane.rightAnchor="14.0" />
-                <Button fx:id="stream" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" text="Etablish Connection" AnchorPane.leftAnchor="15.0" />
+               <Button fx:id="Readers" layoutX="198.4" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="178.0" text="List of reader (refresh)" AnchorPane.leftAnchor="198.0" />
+               <ComboBox fx:id="cardTerminalComboBox" layoutX="398.0" layoutY="13.0" prefHeight="26.0" prefWidth="194.0" AnchorPane.leftAnchor="398.0" AnchorPane.rightAnchor="40.39999999999998" />
+                <Button fx:id="stream" layoutX="20.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Etablish Connection" AnchorPane.leftAnchor="20.0" />
             </children>
          </AnchorPane>
                 <HBox layoutY="82.0" prefHeight="26.0" prefWidth="600.0" spacing="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

@@ -24,7 +24,6 @@ public class HigherController implements Initializable {
     private Card card;
     private CardChannel channel;
     private ResponseAPDU response;
-    private boolean isPinVerify;
     private List<CardTerminal> cardTerminals;
 
     @FXML
@@ -45,8 +44,8 @@ public class HigherController implements Initializable {
     private Button stream;
     @FXML
     private Button Readers;
-    @FXML
-    private Button Connect;
+   // @FXML
+    //private Button Connect;
     @FXML
     private Button sendAPDU;
     @FXML
@@ -85,7 +84,7 @@ public class HigherController implements Initializable {
      */
     private  void setuoConfiguration(){
     sectionTextfield.setDisable(true);
-    Connect.setDisable(true);
+   // Connect.setDisable(true);
     sendAPDU.setDisable(true);
     Data.setDisable(true);
     }
@@ -97,9 +96,7 @@ public class HigherController implements Initializable {
         stream.setOnAction(event -> {
             handleReaderButtonAction();
         });
-        Connect.setOnAction(event -> {
-            handleAtrButtonAction();
-        });
+       // Connect.setOnAction(event -> handleAtrButtonAction() });
 
 
     }
@@ -110,7 +107,7 @@ public class HigherController implements Initializable {
         bundle = ResourceBundle.getBundle("messages", locale);
         stream.setText(bundle.getString("Stream-button"));
         Readers.setText(bundle.getString("List_reader_button"));
-        Connect.setText(bundle.getString("Connect_button"));
+        //Connect.setText(bundle.getString("Connect_button"));
         data_Label.setText(bundle.getString("Label_6"));
         sendAPDU.setText(bundle.getString("Apdu_button"));
     }
@@ -140,7 +137,10 @@ public class HigherController implements Initializable {
                 card = selectedTerminal.connect("*");
                 card.getATR();
                 showAlert("Connexion", "La connexion a été établi");
-                Connect.setDisable(false);
+                sectionTextfield.setDisable(false);
+                Data.setDisable(false);
+                sendAPDU.setDisable(false);
+                ///Connect.setDisable(false);
 
             }else{
                 showAlert("No card present", "veuillez inserer une carte s'iil vous plait");
@@ -151,20 +151,20 @@ public class HigherController implements Initializable {
         }
     }
 
-    private void handleAtrButtonAction(){
+   /* private void handleAtrButtonAction(){
         try {
 
             card = cardTerminalComboBox.getValue().connect("*");
             channel = card.getBasicChannel();
             response = channel.transmit(new CommandAPDU(Command.selectCommand));
-            sectionTextfield.setDisable(false);
-            sendAPDU.setDisable(false);
-            Data.setDisable(false);
+
         } catch (CardException e) {
             showAlert("Erreur", "Erreur lors de la transmission de la commande APDU : " + e.getMessage());
             e.printStackTrace();
         }
     }
+    */
+
     /**
      *
      */

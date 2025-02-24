@@ -9,20 +9,19 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 
-<?import javafx.scene.control.ToggleButton?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="etu.ecole.ensicaen.carteemv.controller.SimpleController">
    <children>
       <AnchorPane layoutX="36.8" prefHeight="40.0" prefWidth="563.0" translateY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ToolBar layoutX="-6.0" layoutY="-10.0" prefHeight="42.0" prefWidth="600.0" rotate="-180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <items>
-                  <ToggleButton fx:id="englishButton"  mnemonicParsing="false">
+                  <ToggleButton fx:id="englishButton" mnemonicParsing="false">
                      <padding>
                         <Insets top="-1.0" />
                      </padding>
@@ -34,7 +33,7 @@
                         </ImageView>
                      </graphic>
                   </ToggleButton>
-                  <ToggleButton  fx:id="frenchButton" mnemonicParsing="false">
+                  <ToggleButton fx:id="frenchButton" mnemonicParsing="false">
                      <padding>
                         <Insets left="1.0" top="-1.0" />
                      </padding>
@@ -56,33 +55,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane fx:id="pinPane" layoutX="1.0" layoutY="132.0" prefHeight="188.0" prefWidth="600.0" visible="false">
+                        <AnchorPane layoutX="-7.0" layoutY="5.0" prefHeight="118.0" prefWidth="616.0">
                            <children>
-                              <Label layoutX="107.0" layoutY="6.0" text="PIN :" />
-                              <PasswordField fx:id="pinCodeField" layoutX="199.0" layoutY="2.0" />
-                              <Button fx:id="validatePin" layoutX="451.0" layoutY="2.0" mnemonicParsing="false" text="Validate" />
-                              <AnchorPane fx:id="actionPane" layoutY="42.0" prefHeight="143.0" prefWidth="600.0" visible="false">
-                                 <children>
-                                    <Label fx:id="Solde_Label" layoutX="104.0" layoutY="16.0" text="Balance :" />
-                                    <Label fx:id="Credit_Label" layoutX="104.0" layoutY="65.0" text="Crédit : " />
-                                    <Label fx:id="Dedit_Label" layoutX="107.0" layoutY="108.0" text="Débit " />
-                                    <TextField fx:id="consulterTextfield" editable="false" layoutX="216.0" layoutY="14.0" prefHeight="26.0" prefWidth="110.0" />
-                                    <TextField fx:id="creditTextfield" layoutX="217.0" layoutY="60.0" prefHeight="26.0" prefWidth="110.0" />
-                                    <TextField fx:id="debitTextfield" layoutX="218.0" layoutY="104.0" prefHeight="26.0" prefWidth="110.0" />
-                                    <Button fx:id="Solde_button" layoutX="457.0" layoutY="13.0" mnemonicParsing="false" text="show" />
-                                    <Button fx:id="debitSoldButton" layoutX="457.0" layoutY="106.0" mnemonicParsing="false" text="Débit" />
-                                    <Button fx:id="creditSoldButton" layoutX="455.0" layoutY="60.0" mnemonicParsing="false" text="Crédit" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="8.0" layoutY="14.0" prefHeight="118.0" prefWidth="600.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.199999999999932" AnchorPane.topAnchor="14.0">
-                           <children>
-                              <Label fx:id="Label_2" layoutX="104.0" layoutY="79.0" text="ATR :" />
-                              <TextField fx:id="AtrField" editable="false" layoutX="185.0" layoutY="75.0" prefHeight="25.0" prefWidth="205.0" />
-                              <Button fx:id="Atrbutton" layoutX="442.0" layoutY="75.0" mnemonicParsing="false" text="Select" />
-                              <Label fx:id="Label_1" layoutX="84.0" layoutY="22.0" text="Readers :" />
-                              <ComboBox fx:id="cardTerminalComboBox" layoutX="184.0" layoutY="18.0" prefHeight="25.0" prefWidth="209.0">
+                              <Label fx:id="Label_2" layoutX="108.2" layoutY="79.0" text="ATR  :" AnchorPane.leftAnchor="108.2" />
+                              <TextField fx:id="AtrField" editable="false" layoutX="183.0" layoutY="75.0" prefHeight="25.0" prefWidth="205.0" AnchorPane.leftAnchor="182.0" />
+                              <Button fx:id="Atrbutton" layoutX="430.0" layoutY="75.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Select" AnchorPane.rightAnchor="115.0" />
+                              <Label fx:id="Label_1" layoutX="93.0" layoutY="22.0" text="Readers :" AnchorPane.leftAnchor="90.0" />
+                              <ComboBox fx:id="cardTerminalComboBox" layoutX="182.0" layoutY="18.0" prefHeight="25.0" prefWidth="209.0" AnchorPane.leftAnchor="182.0">
                                   <items>
                                       <FXCollections fx:factory="observableArrayList">
 
@@ -92,16 +71,36 @@
 
 
                               </ComboBox>
-                              <Button fx:id="Readerbutton" layoutX="442.0" layoutY="18.0" mnemonicParsing="false" text="Select" />
-                              <Button fx:id="refreshReaderButton" layoutX="508.0" layoutY="17.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" translateX="1.0">
+                              <Button fx:id="Readerbutton" layoutX="431.0" layoutY="18.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Select" AnchorPane.rightAnchor="115.0" />
+                              <Button fx:id="refreshReaderButton" layoutX="526.0" layoutY="18.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" translateX="1.0" AnchorPane.rightAnchor="29.0">
                                  <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../images/refresh.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="pinPane" layoutX="1.0" layoutY="132.0" prefHeight="188.0" prefWidth="600.0">
+                           <children>
+                              <Label layoutX="102.2" layoutY="6.0" text="PIN  :" AnchorPane.leftAnchor="102.2" />
+                              <PasswordField fx:id="pinCodeField" layoutX="191.0" layoutY="2.0" prefHeight="26.0" prefWidth="208.0" AnchorPane.leftAnchor="175.0" />
+                              <Button fx:id="validatePin" layoutX="438.0" layoutY="4.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="Validate" AnchorPane.rightAnchor="108.0" />
+                              <AnchorPane fx:id="actionPane" layoutY="42.0" prefHeight="143.0" prefWidth="600.0">
+                                 <children>
+                                    <Label fx:id="Solde_Label" layoutX="81.8" layoutY="17.0" text="Balance  :" AnchorPane.leftAnchor="81.8" />
+                                    <Label fx:id="Credit_Label" layoutX="83.0" layoutY="64.0" text="Credit  :  " AnchorPane.leftAnchor="90.0" />
+                                    <Label fx:id="Dedit_Label" layoutX="93.8" layoutY="108.0" text="Debit  :" AnchorPane.leftAnchor="93.8" />
+                                    <TextField fx:id="consulterTextfield" editable="false" layoutX="194.0" layoutY="14.0" prefHeight="26.0" prefWidth="129.0" AnchorPane.leftAnchor="177.0" />
+                                    <TextField fx:id="creditTextfield" layoutX="195.0" layoutY="60.0" prefHeight="26.0" prefWidth="131.0" AnchorPane.leftAnchor="177.0" />
+                                    <TextField fx:id="debitTextfield" layoutX="195.0" layoutY="104.0" prefHeight="26.0" prefWidth="132.0" AnchorPane.leftAnchor="177.0" />
+                                    <Button fx:id="Solde_button" layoutX="439.0" layoutY="13.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="65.0" text="show" AnchorPane.rightAnchor="109.0" />
+                                    <Button fx:id="debitSoldButton" layoutX="440.0" layoutY="105.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="68.0" text="Debit" AnchorPane.rightAnchor="106.0" />
+                                    <Button fx:id="creditSoldButton" layoutX="440.0" layoutY="58.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="Credit" AnchorPane.rightAnchor="108.0" />
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                      </children>
@@ -112,7 +111,7 @@
             </content>
           </Tab>
             <Tab fx:id="HighTab" text="High">
-                <content> <fx:include source="higher.fxml" fx:id="High" /> </content>
+                <content> <fx:include fx:id="High" source="higher.fxml" /> </content>
             </Tab>
 
 
