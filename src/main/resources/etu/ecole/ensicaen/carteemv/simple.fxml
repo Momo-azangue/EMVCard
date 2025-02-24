@@ -49,7 +49,7 @@
             </ToolBar>
          </children>
       </AnchorPane>
-      <TabPane layoutY="50.0" prefHeight="402.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.60000000000002">
+      <TabPane fx:id="tabpane" layoutY="50.0" prefHeight="402.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.60000000000002">
         <tabs>
           <Tab fx:id="SimpleTab" text="Simple">
             <content>

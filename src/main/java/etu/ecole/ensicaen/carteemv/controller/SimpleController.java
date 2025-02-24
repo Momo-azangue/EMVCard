@@ -74,10 +74,14 @@ public class SimpleController implements Initializable {
     private ToggleButton englishButton;
     @FXML
     private ToggleButton frenchButton;
+    @FXML
+    private TabPane tabpane;
 
     private ResourceBundle bundle;
 
     public ToggleGroup languageToggleGroup ;
+
+
 
 
 
@@ -91,6 +95,7 @@ public class SimpleController implements Initializable {
         componentsfirstState();
         loadCardTerminals();
         setupEventHandlers();
+
 
 
     }
@@ -154,9 +159,6 @@ public class SimpleController implements Initializable {
         debitSoldButton.setText(bundle.getString("Debit_button"));
 
         validatePin.setText(bundle.getString("pin_button"));
-
-
-
     }
 
 
@@ -330,6 +332,8 @@ public class SimpleController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
 
 }
 

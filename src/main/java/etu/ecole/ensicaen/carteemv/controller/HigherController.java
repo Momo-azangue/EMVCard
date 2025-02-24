@@ -107,7 +107,6 @@ public class HigherController implements Initializable {
         bundle = ResourceBundle.getBundle("messages", locale);
         stream.setText(bundle.getString("Stream-button"));
         Readers.setText(bundle.getString("List_reader_button"));
-        //Connect.setText(bundle.getString("Connect_button"));
         data_Label.setText(bundle.getString("Label_6"));
         sendAPDU.setText(bundle.getString("Apdu_button"));
     }
@@ -140,8 +139,6 @@ public class HigherController implements Initializable {
                 sectionTextfield.setDisable(false);
                 Data.setDisable(false);
                 sendAPDU.setDisable(false);
-                ///Connect.setDisable(false);
-
             }else{
                 showAlert("No card present", "veuillez inserer une carte s'iil vous plait");
             }
@@ -151,19 +148,6 @@ public class HigherController implements Initializable {
         }
     }
 
-   /* private void handleAtrButtonAction(){
-        try {
-
-            card = cardTerminalComboBox.getValue().connect("*");
-            channel = card.getBasicChannel();
-            response = channel.transmit(new CommandAPDU(Command.selectCommand));
-
-        } catch (CardException e) {
-            showAlert("Erreur", "Erreur lors de la transmission de la commande APDU : " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-    */
 
     /**
      *
@@ -179,10 +163,16 @@ public class HigherController implements Initializable {
                 ApduCommand.SendAPDU(Adpu);
                 System.out.println("vous avez envoyé une APDU :" + " "+ Utils.hexify(Adpu));
                 System.out.println("La réponse est :"+ " " + Utils.hexify(ApduCommand.SendAPDU(Adpu).getBytes()));
+                int sw1 = ApduCommand.SendAPDU(Adpu).getSW1();
+                int sw2 = ApduCommand.SendAPDU(Adpu).getSW2();
+                System.out.println("gars"+ sw1 +  "gars"+ sw2);
+                interpretStatusWord(sw1, sw2);
                 Log.appendText( countActionOnLog + "  " + Utils.hexify(Adpu) + "\n");
                 Log.appendText(countResponseLog + "  " + Utils.hexify(ApduCommand.SendAPDU(Adpu).getBytes()) + "\n");
 
+
                 databaseModel.logToDatabase(Utils.hexify(Adpu), Utils.hexify(ApduCommand.SendAPDU(Adpu).getBytes()));
+
             } catch (Exception e) {
                 Log.appendText( countActionOnLog + "  " + ": Erreur - " + e.getMessage() + "\n");
                 throw new RuntimeException(e);
@@ -323,5 +313,27 @@ public class HigherController implements Initializable {
         Le.clear();
     }
 
+    public static String interpretStatusWord(int sw1, int sw2) {
+        int statusWord = (sw1 << 8) | sw2; // Concaténation des deux octets
+
+        switch (statusWord) {
+            case 0x9000:
+                return "Erreur de longueur incorrecte";
+            case 0x6700:
+                return "Erreur de longueur incorrecte";
+            case 0x6985:
+                return "Conditions d'utilisation non satisfaites";
+            case 0x6A82:
+                return "Fichier ou application non trouvé";
+            case 0x6A83:
+                return "Enregistrement non trouvé";
+            case 0x6B00:
+                return "Paramètre incorrect";
+            case 0x6D00:
+                return "Instruction non supportée";
+            default:
+                return "Code inconnu : 0x" + Integer.toHexString(statusWord).toUpperCase();
+        }
+    }
 
 }
