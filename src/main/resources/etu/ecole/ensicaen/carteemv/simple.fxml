@@ -56,7 +56,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane fx:id="pinPane" layoutX="1.0" layoutY="132.0" prefHeight="188.0" prefWidth="600.0" visible="false">
+                        <AnchorPane fx:id="pinPane" layoutX="1.0" layoutY="132.0" prefHeight="188.0" prefWidth="600.0" visible="false">
                            <children>
                               <Label layoutX="107.0" layoutY="6.0" text="PIN :" />
                               <PasswordField fx:id="pinCodeField" layoutX="199.0" layoutY="2.0" />
@@ -75,8 +75,8 @@
                                  </children>
                               </AnchorPane>
                            </children>
-                        </Pane>
-                        <Pane layoutX="8.0" layoutY="14.0" prefHeight="118.0" prefWidth="600.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.199999999999932" AnchorPane.topAnchor="14.0">
+                        </AnchorPane>
+                        <AnchorPane layoutX="8.0" layoutY="14.0" prefHeight="118.0" prefWidth="600.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.199999999999932" AnchorPane.topAnchor="14.0">
                            <children>
                               <Label fx:id="Label_2" layoutX="104.0" layoutY="79.0" text="ATR :" />
                               <TextField fx:id="AtrField" editable="false" layoutX="185.0" layoutY="75.0" prefHeight="25.0" prefWidth="205.0" />
@@ -103,7 +103,7 @@
                                  </graphic>
                               </Button>
                            </children>
-                        </Pane>
+                        </AnchorPane>
                      </children>
                      <padding>
                         <Insets left="14.0" />
